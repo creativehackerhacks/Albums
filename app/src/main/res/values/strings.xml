@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">Albums</string>
+    <string name="main_text_show_AlbumList">Grant Permssion to see songs.</string>
+</resources>

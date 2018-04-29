@@ -56,8 +56,20 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         mTextPermissionStatus.setOnClickListener(this);
         mGetAlbums = new GetAlbums(mAlbumsList);
 
+        RecyclerViewClickListener listener = new RecyclerViewClickListener() {
+            @Override
+            public void onClick(View view, int position) {
+                // This is null... dunno why!
+                Long idToPass = mAlbumsList.get(position).getAlbumId();
+                Toast.makeText(MainActivity.this, "I Clicked " + mAlbumsList.get(position).getTitle(), Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(MainActivity.this, SongActivity.class);
+                intent.putExtra("AlbumId", mAlbumsList.get(position).getAlbumId());
+                startActivity(intent);
+            }
+        };
+
         mRecyclerView = findViewById(R.id.main_recyclerView);
-        mAlbumsAdapter = new AlbumsAdapter(MainActivity.this, mAlbumsList);
+        mAlbumsAdapter = new AlbumsAdapter(MainActivity.this, mAlbumsList, listener);
         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getApplicationContext());
         mRecyclerView.setLayoutManager(mLayoutManager);
         mRecyclerView.setItemAnimator(new DefaultItemAnimator());

@@ -1,6 +1,7 @@
 package com.example.ansh.albums.dataSet;
 
 import android.content.ContentResolver;
+import android.content.ContentUris;
 import android.content.Context;
 import android.database.Cursor;
 import android.net.Uri;
@@ -36,20 +37,26 @@ public class GetAlbums {
             int numOfSongs = mAlbumsAlbumCursor.getColumnIndex
                     (MediaStore.Audio.Albums.NUMBER_OF_SONGS);
 
+            Uri sArtWorkUri = Uri.parse("content://media/external/audio/albumart");
+
             //add songs to list
             do {
+
+                // Getting album art
+
+                long thisID = mAlbumsAlbumCursor.getLong(idColumn);
+                Uri uri = ContentUris.withAppendedId(sArtWorkUri, thisID);
 
                 String title = mAlbumsAlbumCursor.getString(titleColumn);
                 String artist = mAlbumsAlbumCursor.getString(artistColumn);
                 String noSongs = mAlbumsAlbumCursor.getString(numOfSongs);
 
 
-                mAlbumList.add(new Albums(title, artist, noSongs));
+                mAlbumList.add(new Albums(thisID, title, artist, noSongs, uri));
             }
             while (mAlbumsAlbumCursor.moveToNext());
         }
         mAlbumsAlbumCursor.close();
     }
-
 
 }

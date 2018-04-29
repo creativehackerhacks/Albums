@@ -11,26 +11,38 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/row_padding_vertical">
 
+    <ImageView
+        android:layout_width="45dp"
+        android:layout_height="45dp"
+        android:id="@+id/albumImage"
+        android:layout_alignParentLeft="true"/>
+
     <TextView
         android:id="@+id/title"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
+        android:layout_toRightOf="@id/albumImage"
         android:textColor="@color/title"
         android:textSize="16dp"
+        android:layout_marginLeft="8dp"
         android:textStyle="bold" />
 
     <TextView
         android:id="@+id/artist"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
+        android:layout_toRightOf="@id/albumImage"
         android:layout_height="wrap_content"
-        android:layout_below="@id/title" />
+        android:layout_below="@id/title"
+        android:layout_marginLeft="8dp"/>
 
     <TextView
+        android:layout_margin="10dp"
         android:id="@+id/num_of_songs"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
-        android:textColor="@color/year" />
+        android:textColor="@color/year"
+        android:textStyle="bold"/>
 
 </RelativeLayout>
